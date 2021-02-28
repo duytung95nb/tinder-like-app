@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, NavLink, Switch, Redirect } from 'react
 import Home from './Home/Home';
 import Liked from './Liked/Liked';
 import { useSelector } from 'react-redux';
+import { House, Heart } from 'react-bootstrap-icons';
 function App() {
   const { likedUsers } = useSelector((state) => state.liked);
   return (
@@ -12,11 +13,11 @@ function App() {
           <li className="nav-item">
             <NavLink to="/home" className="nav-link"
               activeClassName="active">
-              Home</NavLink>
+              <House /> Home</NavLink>
           </li>
           <li className="nav-item">
             <NavLink to="liked" className="nav-link"
-              activeClassName="active">Liked ({likedUsers.length})</NavLink>
+              activeClassName="active"><Heart/> Liked ({likedUsers.length})</NavLink>
           </li>
         </ul>
       </div>

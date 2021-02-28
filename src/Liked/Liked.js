@@ -1,4 +1,5 @@
 import { Button } from "react-bootstrap";
+import { Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "./LikedSlice";
 
@@ -23,7 +24,7 @@ export default function Liked() {
                         `${user.title === 'mr' ? 'Male': 'Female'}`}</p>
                     </div>
                     <Button onClick={() => onRemoveLikedUser(user)} className="btn-danger">
-                        Delete
+                        <Trash/>
                     </Button>
                 </li>
         })}

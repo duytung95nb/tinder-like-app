@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { actions as homeActions } from './HomeSlice';
 import { actions as likedActions } from '../Liked/LikedSlice';
+import { Heart, X } from "react-bootstrap-icons";
 const REMAINING_USERS_TO_FETCH_NEW = 2;
 const DISTANCE_TO_BE_DEFINED_AS_SWIPE_IN_PX = 30;
 const appId = '603b55f97c32a54aa4315628';
@@ -84,13 +85,17 @@ export default function Home() {
             <h5 className="card-title">{displayName}</h5>
             <p className="card-text flex-grow-1">{userAge}</p>
           
-            <div className="d-flex Home__Actions">
-                <Button className="w-100 btn-danger"
+            <div className="d-flex justify-content-between Home__Actions">
+                <Button className="btn-light"
                     disabled={actionButtonDisabled}
-                    onClick={onDislike}>Dislike</Button>
-                <Button className="w-100 btn-success" 
+                    onClick={onDislike}>
+                    <X fontSize="30px"/>
+                </Button>
+                <Button className="btn-light" 
                     disabled={actionButtonDisabled}
-                    onClick={onLike}>Like</Button>
+                    onClick={onLike}>
+                        <Heart fontSize="30px" fill="#dc3545"/>
+                    </Button>
             </div>  
         </div>
       </div>;
