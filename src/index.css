@@ -25,6 +25,14 @@ code {
 .Home {
   height: 100%;
 }
+@media only screen and (min-width: 768px) {
+  .Home {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .Home__Actions {
   height: 40px;
 }

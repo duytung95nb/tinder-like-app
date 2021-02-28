@@ -20,7 +20,7 @@ export default function Home() {
             const fetchedUsers = json.data;
             dispatch(homeActions.setUsers(fetchedUsers));
         });
-    }, [page]);
+    }, [page, dispatch]);
     useEffect(() => {
         if(users.length === 0) { return; }
         if(currentUserIndex === 0) {
@@ -34,16 +34,17 @@ export default function Home() {
             || userIdToDetailMap[users[nextIndexToFetch]?.id]) { return; }
         // Fetch and add next
         fetchAndAddUserDetailToMapById(users[nextIndexToFetch].id);
-    }, [currentUserIndex, users]);
-    const fetchAndAddUserDetailToMapById = (id) => {
-        fetch(`https://dummyapi.io/data/api/user/${id}`,{
-            headers: { "app-id": appId }
-        })
-        .then(response => response.json())
-        .then(userDetail => {
-            dispatch(homeActions.setUserIdToDetailMap(userDetail));
-        });
-    };
+
+        function fetchAndAddUserDetailToMapById(id) {
+            fetch(`https://dummyapi.io/data/api/user/${id}`,{
+                headers: { "app-id": appId }
+            })
+            .then(response => response.json())
+            .then(userDetail => {
+                dispatch(homeActions.setUserIdToDetailMap(userDetail));
+            });
+        };
+    }, [currentUserIndex, users, dispatch]);
     const onDislike = () => {
         moveToNextUser();
     };
@@ -77,7 +78,7 @@ export default function Home() {
         const userAge = !currentUserDetail ? 'Loading':
             (new Date().getFullYear() - new Date(currentUserDetail.dateOfBirth).getFullYear());
         const actionButtonDisabled = currentUserIndex >= users.length - 1;
-        return <div className="card border-0 h-100 d-flex pt-3">
+        return <div className="card border-0 h-100 d-flex pt-3 Home">
         <img className="card-img-top" src={currentUser.picture} alt={displayName}
             onTouchStart={onImageTouchStart}
             onTouchEnd={onImageTouchEnd}/>

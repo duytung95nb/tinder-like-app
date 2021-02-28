@@ -11,7 +11,7 @@ const initialState = {
         state.likedUsers = [...state.likedUsers, action.payload];
       },
       removeFromLiked: (state, action) => {
-        state.likedUsers = state.likedUsers.filter(u => u.id != action.payload);
+        state.likedUsers = state.likedUsers.filter(u => u.id !== action.payload);
       }
    },
  });
