@@ -5,7 +5,7 @@ import { actions as homeActions } from './HomeSlice';
 import { actions as likedActions } from '../Liked/LikedSlice';
 const REMAINING_USERS_TO_FETCH_NEW = 2;
 const DISTANCE_TO_BE_DEFINED_AS_SWIPE_IN_PX = 30;
-const appId = '603b17e166a0fbb7fd981d7c';
+const appId = '603b55f97c32a54aa4315628';
 export default function Home() {
     const {users, userIdToDetailMap, currentUserIndex, page } = useSelector((state) => state.home);
     const dispatch = useDispatch();
