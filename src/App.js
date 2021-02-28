@@ -1,24 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { Route, BrowserRouter as Router, NavLink, Switch, Redirect } from 'react-router-dom';
+import Home from './Home/Home';
+import Liked from './Liked/Liked';
+import { useSelector } from 'react-redux';
 function App() {
+  const { likedUsers } = useSelector((state) => state.liked);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App-header">
+        <ul className="nav nav-pills nav-fill">
+          <li className="nav-item">
+            <NavLink to="/home" className="nav-link"
+              activeClassName="active">
+              Home</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="liked" className="nav-link"
+              activeClassName="active">Liked ({likedUsers.length})</NavLink>
+          </li>
+        </ul>
+      </div>
+      <div className="App-main">
+        <Switch>
+          <Route exact={true} path="/home" component={Home}>
+          </Route>
+          <Route exact={true} path="/liked" component={Liked}></Route>
+          <Redirect from="/" to="home" />
+        </Switch>      
+      </div>
+    </Router>
   );
 }
 
